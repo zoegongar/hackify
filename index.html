@@ -7,39 +7,65 @@
   <script src="https://open.spotify.com/embed/iframe-api/v1" async></script>
 </head>
 <body>
-<section id="publicSection">
-  Sector publico: <br>
-  <button id="loginButton">Login</button>
-</section>
-<section id="privateSection">
-  Sector privado: <br>
-  <section id="menuSection">
-    <button id="profileButton">Profile</button>
-    <button id="playlistsButton">Mis playlists</button>
-    <button id="logoutButton">Logout</button>
+  <header>
+    <section id="publicSection">
+      Sector publico: <br>
+    <button id="loginButton">Login</button>
+    </section>
+    <section id="privateSection">
+      Sector privado: <br>
+    <section id="menuSection">
+      <button id="profileButton">Profile</button>
+      <button id="playlistsButton">Mis playlists</button>
+      <button id="logoutButton">Logout</button>
+      <img id="imgAvatar" src="src/img/avatar.png" />
+      <span id="displayName"></span>    
+    <div id="searchContainer">
+      <img id="imgLoupe" src="src/img/loupe.png" />
+      <input type="text" placeholder="Search music, artist, albums...">
+    </div>
+    </section>
+  </header>
+  <aside>  
+    <img id="logo" src="src/img/logo.png" alt="logo">
+    <nav>
+      <ul>
+        <li><a href="#"><img src="src/img/favourites.png" alt="Avatar"></a></li>
+        <li><a href="#"><img src="src/img/home.png" alt="Other Image"></a></li>
+        <li><a href="#"><img src="src/img/playlist.png" alt="Another Image"></a></li>
+      </ul>
+    </nav>
+  </aside>
+  
+  <main> 
+    <section id="profileSection" >
+      <h1>Display your Spotify profile data</h1>
+      <h2>Logged in as <span id="displayName"></span></h2>
+      <ul>
+        <li>User ID: <span id="id"></span></li>
+        <li>Email: <span id="email"></span></li>
+        <li>Spotify URI: <a id="uri" href="#"></a></li>
+        <li>Link: <a id="url" href="#"></a></li>
+      </ul>
+    </section>
+    <section id="playlistsSection">
+      <p>Mis playlists:</p>
+      <ul id="playlists"></ul>
+    </section>
+  </main>
+
+  <footer>
+    <section id="actionsSection">
+      <p>Acciones comunes:</p>
+      <button id="changeButton">Cambiar track</button>
+      <button id="playButton">Play/Pause</button>
+    </section>
+    <section id="spotifyEmbedSection">
+      <div id="embed-iframe"></div>
+    </section>
   </section>
-  <section id="profileSection" >
-    <h1>Display your Spotify profile data</h1>
-    <h2>Logged in as <span id="displayName"></span></h2>
-    <ul>
-      <li>User ID: <span id="id"></span></li>
-      <li>Email: <span id="email"></span></li>
-      <li>Spotify URI: <a id="uri" href="#"></a></li>
-      <li>Link: <a id="url" href="#"></a></li>
-    </ul>
-  </section>
-  <section id="playlistsSection">
-    <p>Mis playlists:</p>
-    <ul id="playlists"></ul>
-  </section>
-  <section id="actionsSection">
-    <p>Acciones comunes:</p>
-    <button id="changeButton">Cambiar track</button>
-    <button id="playButton">Play/Pause</button>
-  </section>
-  <section id="spotifyEmbedSection">
-    <div id="embed-iframe"></div>
-  </section>
-</section>
+  </footer>
+
 </body>
+
 </html>
