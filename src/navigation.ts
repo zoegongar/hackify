@@ -24,23 +24,20 @@ export function navigate(view: string): void {
 }
 
 export function setupNavigation(): void {
-    document.getElementById('homeLink')!.addEventListener('click', (event) => {
+    const homeLink = document.getElementById('homeLink')!;
+    const playlistsLink = document.getElementById('playlistsLink')!;
+    const favoritesLink = document.getElementById('favoritesLink')!;
+
+    homeLink.addEventListener('click', (event) => {
         event.preventDefault();
         navigate('home');
     });
-    document.getElementById('playlistsLink')!.addEventListener('click', (event) => {
+    playlistsLink.addEventListener('click', (event) => {
         event.preventDefault();
         navigate('playlists');
     });
-    document.getElementById('favoritesLink')!.addEventListener('click', (event) => {
+    favoritesLink.addEventListener('click', (event) => {
         event.preventDefault();
         navigate('favorites');
     });
-    document.getElementById('profileLink')!.addEventListener('click', (event) => {
-        event.preventDefault();
-        navigate('profile');
-    });
-
-    // Navegar a la vista inicial (home)
-    navigate('home');
 }

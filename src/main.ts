@@ -1,7 +1,7 @@
 import './main.css';
 import { init as authenticatorInit, login, logout } from './auth';
 import { getMyPlaylists, initPlayer, playTrack, togglePlay } from './api';
-import { setupNavigation } from './navigation';
+import { setupNavigation, navigate } from './navigation'; // Importa navigate también
 
 const publicSection = document.getElementById("publicSection")!;
 const privateSection = document.getElementById("privateSection")!;
@@ -21,6 +21,7 @@ async function init() {
     initPublicSection(profile);
     initPrivateSection(profile);
     setupNavigation();
+    navigate('home');
 }
 
 function initPublicSection(profile?: UserProfile): void {
@@ -45,8 +46,9 @@ function renderPrivateSection(isLogged: boolean) {
 }
 
 function initMenuSection(): void {
-    document.getElementById("profileButton")!.addEventListener("click", () => {
-        renderProfileSection(profileSection.style.display !== "none");
+    document.getElementById("profileButton")!.addEventListener("click", (event) => {
+        event.preventDefault();
+        navigate('profile'); // Navega a la vista de perfil
     });
     document.getElementById("playlistsButton")!.addEventListener("click", () => {
         renderPlaylistsSection(playlistsSection.style.display !== "none");
