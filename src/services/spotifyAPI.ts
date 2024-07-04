@@ -1,7 +1,7 @@
 const BASE_URL = 'https://api.spotify.com/v1';
 
 //Función para obtener categorías de música
-export const getCategories = async (token: string) => {
+export const getCategories = async (token: string): Promise<Category> => {
   const response = await fetch(`${BASE_URL}/browse/categories`, {
     headers: {
       Authorization: `Bearer ${token}`,
@@ -11,7 +11,7 @@ export const getCategories = async (token: string) => {
 };
 
 //Función para obtener playlists de una categoría específica
-export const getPlaylists = async (categoryId: string, token: string) => {
+export const getPlaylists = async (categoryId: string, token: string): Promise<Playlist> => {
   const response = await fetch(`${BASE_URL}/browse/categories/${categoryId}/playlists`, {
     headers: {
       Authorization: `Bearer ${token}`,
@@ -21,7 +21,7 @@ export const getPlaylists = async (categoryId: string, token: string) => {
 };
 
 //Función para obtener playlists del usuario
-export const getUserPlaylists = async (token: string) => {
+export const getUserPlaylists = async (token: string): Promise<UserPlaylist> => {
   const response = await fetch(`${BASE_URL}/me/playlists`, {
     headers: {
       Authorization: `Bearer ${token}`,
@@ -31,7 +31,7 @@ export const getUserPlaylists = async (token: string) => {
 };
 
 //Función para obtener detalles de una playlist específica
-export const getPlaylistDetails = async (playlistId: string, token: string) => {
+export const getPlaylistDetails = async (playlistId: string, token: string): Promise<PlaylistDetails> => {
   const response = await fetch(`${BASE_URL}/playlists/${playlistId}`, {
     headers: {
       Authorization: `Bearer ${token}`,
@@ -41,7 +41,7 @@ export const getPlaylistDetails = async (playlistId: string, token: string) => {
 };
 
 //Función para obtener tracks guardados del usuario (favoritos)
-export const getSavedTracks = async (token: string) => {
+export const getSavedTracks = async (token: string): Promise<SavedTracks> => {
   const response = await fetch(`${BASE_URL}/me/tracks`, {
     headers: {
       Authorization: `Bearer ${token}`,
@@ -51,7 +51,7 @@ export const getSavedTracks = async (token: string) => {
 };
 
 //Función para obtener tracks de una playlist específica
-export const getPlaylistTracks = async (playlistId: string, token: string) => {
+export const getPlaylistTracks = async (playlistId: string, token: string): Promise<PlaylistTracks> => {
   const response = await fetch(`${BASE_URL}/playlists/${playlistId}/tracks`, {
     headers: {
       Authorization: `Bearer ${token}`,
@@ -61,7 +61,7 @@ export const getPlaylistTracks = async (playlistId: string, token: string) => {
 };
 
 //Función para obtener detalles de un track específico
-export const getTrackDetails = async (trackId: string, token: string) => {
+export const getTrackDetails = async (trackId: string, token: string): Promise<TrackDetails> => {
   const response = await fetch(`${BASE_URL}/tracks/${trackId}`, {
     headers: {
       Authorization: `Bearer ${token}`,
@@ -71,7 +71,7 @@ export const getTrackDetails = async (trackId: string, token: string) => {
 };
 
 //Función para buscar tracks por nombre
-export const searchTracks = async (query: string, token: string) => {
+export const searchTracks = async (query: string, token: string): Promise<SearchTracks> => {
   const response = await fetch(`${BASE_URL}/search?q=${query}&type=track`, {
     headers: {
       Authorization: `Bearer ${token}`,
@@ -81,7 +81,7 @@ export const searchTracks = async (query: string, token: string) => {
 };
 
 //Función para obtener información del perfil del usuario
-export const getProfile = async (token: string) => {
+export const getProfile = async (token: string): Promise<Profile> => {
   const response = await fetch(`${BASE_URL}/me`, {
     headers: {
       Authorization: `Bearer ${token}`,
@@ -91,7 +91,7 @@ export const getProfile = async (token: string) => {
 };
 
 //Función para controlar la reproducción del player (reproducir, pausar, etc.)
-export const controlPlayer = async (action: string, token: string) => {
+export const controlPlayer = async (action: string, token: string): Promise<Player> => {
   const response = await fetch(`${BASE_URL}/me/player/${action}`, {
     method: 'PUT',
     headers: {
@@ -102,7 +102,7 @@ export const controlPlayer = async (action: string, token: string) => {
 };
 
 //Función para obtener información de un artista específico
-export const getArtistDetails = async (artistId: string, token: string) => {
+export const getArtistDetails = async (artistId: string, token: string): Promise<ArtistDetails> => {
   const response = await fetch(`${BASE_URL}/artists/${artistId}`, {
     headers: {
       Authorization: `Bearer ${token}`,
@@ -112,7 +112,7 @@ export const getArtistDetails = async (artistId: string, token: string) => {
 };
 
 //Función para obtener detalles de un álbum específico
-export const getAlbumDetails = async (albumId: string, token: string) => {
+export const getAlbumDetails = async (albumId: string, token: string): Promise<AlbumDetails> => {
   const response = await fetch(`${BASE_URL}/albums/${albumId}`, {
     headers: {
       Authorization: `Bearer ${token}`,
