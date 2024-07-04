@@ -32,11 +32,6 @@ type Playlist = {
   uri: string;
 };
 
-type Category = {
-  id: string;
-  name: string;
-};
-
 type CategoryResponse = {
   categories: {
     items: Category[];
@@ -76,23 +71,11 @@ type TokenResponse = {
   refresh_token: string;
 };
 
-type Playlist = {
-  name: string;
-};
-
-
 type PlaylistRequest = {
   items: Playlist[];
 };
 
 type Category = {
-  items: {
-    id: string;
-    name: string;
-  }[];
-};
-
-type Playlist = {
   items: {
     id: string;
     name: string;

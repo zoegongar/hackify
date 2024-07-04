@@ -22,6 +22,7 @@ async function init() {
     initPrivateSection(profile);
     setupNavigation();
     navigate('home');
+    setupThemeToggle();
 }
 
 function initPublicSection(profile?: UserProfile): void {
@@ -47,7 +48,7 @@ function renderPrivateSection(isLogged: boolean) {
 function initMenuSection(): void {
     document.getElementById("profileButton")!.addEventListener("click", (event) => {
         event.preventDefault();
-        navigate('profile'); // Navega a la vista de perfil
+        navigate('profile');
     });
     document.getElementById("logoutButton")!.addEventListener("click", logout);
 }
@@ -83,6 +84,20 @@ function initActionsSection(): void {
 
 function renderActionsSection(render: boolean) {
     actionsSection.style.display = render ? "block" : "none";
+}
+
+function setupThemeToggle() {
+    const darkModeToggle = document.getElementById('dark-mode-toggle') as HTMLInputElement;
+
+    darkModeToggle.addEventListener('change', () => {
+        if (darkModeToggle.checked) {
+            document.body.classList.remove('light-mode');
+            document.body.classList.add('dark-mode');
+        } else {
+            document.body.classList.remove('dark-mode');
+            document.body.classList.add('light-mode');
+        }
+    });
 }
 
 document.addEventListener("DOMContentLoaded", init);
