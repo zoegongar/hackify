@@ -2,6 +2,7 @@ import { fetchUserPlaylists, getUserPlaylistsCache, setUserPlaylistsCache } from
 import { playTrack } from '../services/player';
 import { getPlaylistDetails } from '../services/spotifyAPI';
 import { navigate } from '../utils/navigation';
+import './Playlists.css';
 
 export async function renderUserPlaylists(): Promise<string> {
     const playlists: Playlist[] = getUserPlaylistsCache();
@@ -23,7 +24,7 @@ function renderUserPlaylistsHTML(playlists: Playlist[]): string {
         <ul id="userPlaylists" class="user-playlists">
             ${playlists.map(playlist => `
                 <li data-id="${playlist.id}" class="user-playlist-item">
-                    ${playlist.images && playlist.images.length > 0 ? `<img style="width: 120px;" src="${playlist.images[0].url}" alt="${playlist.name}" />` : ''}
+                    ${playlist.images && playlist.images.length > 0 ? `<img src="${playlist.images[0].url}" alt="${playlist.name}" />` : ''}
                     <p>${playlist.name}</p>
                 </li>
             `).join('')}
@@ -47,7 +48,7 @@ export async function renderUserPlaylistDetails(playlistId: string): Promise<str
 
   return `
     <div>
-      <h2><span class="back-to-user-playlists" style="cursor:pointer;color:blue;">Mis Playlists</span> / ${playlist.name}</h2>
+      <h2><span class="back-to-user-playlists">Mis Playlists</span> / ${playlist.name}</h2>
       <ul>
         ${playlist.tracks.items.map(item => `
           <li data-uri="${item.track.uri}" class="track-item">
