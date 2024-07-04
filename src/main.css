@@ -78,6 +78,10 @@ header {
 	padding: 0 20px;
 }
 
+li {
+	list-style:none;
+}
+
 main {
 	grid-column: 2 / 3;
 	grid-row: 2 / 3; 
@@ -189,31 +193,17 @@ button:focus-visible {
 	padding: 10px 20px;
 	border: none;
 	cursor: pointer;
-	display: inline-block;
-  }  
+	display: none;
+  } 
+
 #menu-toggle {
 	display: none;
 }
+
  #mobile-menu {
 	display: none;
 }
-  
-#mobile-menu ul {
-	list-style-type: none;
-	padding: 0;
-}
-  
-#mobile-menu ul li {
-	margin: 10px 0;
-}
-  
-#mobile-menu ul li a {
-	text-decoration: none;
-	color: #333;
-}
-#navAside li {
-	list-style:none;
-}
+
 #playlistGenre {
 	display: grid;
 	grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
@@ -255,6 +245,10 @@ button:focus-visible {
 		width: 100%;
 		padding: 0;
 	  }
+
+	  footer {
+		bottom: 10px;
+	  }
 	
 	  aside {
 		display: none;
@@ -265,8 +259,8 @@ button:focus-visible {
 		cursor: pointer;
 	  }
 	
-	  #menu-toggle {
-		display: none;
+	  #menu-toggle:checked + #mobile-menu {
+		display: block;
 	  }
 	
 	  #menu-toggle:checked ~ #mobile-menu {
@@ -275,7 +269,6 @@ button:focus-visible {
 	
 	  #mobile-menu {
 		display: none;
-		background-color: #1a1a1a;
 		position: absolute;
 		top: 50px;
 		width: 100%;
@@ -301,6 +294,27 @@ button:focus-visible {
 	  #mobile-menu ul li a:hover {
 		color: #646cff;
 	  }
+
+	  #profileButton {
+        display: none;
+    }
+	  #logoutButton {
+        display: none;
+    }
+	  #imgAvatar {
+        display: none;
+    }
+	  #displayName {
+        display: none;
+    }
+	  #mainContent {
+        display: none;
+    }
+	  #navAside {
+        display: none;
+    }
+      
+	
 }
 
 @media (prefers-color-scheme: light) {

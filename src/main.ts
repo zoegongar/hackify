@@ -74,7 +74,9 @@ function renderProfileData(profile: UserProfile) {
 }
 
 function initActionsSection(): void {
-    
+    document.getElementById("changeButton")!.addEventListener("click", () => {
+        playTrack('spotify:track:11dFghVXANMlKmJXsNCbNl'); // solo a modo de ejemplo
+    });
     document.getElementById("playButton")!.addEventListener("click", () => {
         togglePlay();
     });
