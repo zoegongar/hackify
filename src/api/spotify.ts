@@ -61,5 +61,3 @@ export async function getMyPlaylists(token: string): Promise<PlaylistRequest> {
 
   return await result.json();
 }
-
-// TODO agregar nuevas funciones para obtener playlists, canciones, etc
