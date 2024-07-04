@@ -27,9 +27,82 @@ type Playlist = {
   tracks: {
     href: string;
     total: number;
+    items: PlaylistTrack[];
   };
   type: string;
   uri: string;
+};
+
+type PlaylistTrack = {
+  added_at: string;
+  added_by: {
+    external_urls: {
+      spotify: string;
+    };
+    href: string;
+    id: string;
+    type: string;
+    uri: string;
+  };
+  is_local: boolean;
+  primary_color: string;
+  track: {
+    album: {
+      album_type: string;
+      artists: {
+        external_urls: {
+          spotify: string;
+        };
+        href: string;
+        id: string;
+        name: string;
+        type: string;
+        uri: string;
+      }[];
+      available_markets: string[];
+      external_urls: {
+        spotify: string;
+      };
+      href: string;
+      id: string;
+      images: Image[];
+      name: string;
+      release_date: string;
+      release_date_precision: string;
+      total_tracks: number;
+      type: string;
+      uri: string;
+    };
+    artists: {
+      external_urls: {
+        spotify: string;
+      };
+      href: string;
+      id: string;
+      name: string;
+      type: string;
+      uri: string;
+    }[];
+    available_markets: string[];
+    disc_number: number;
+    duration_ms: number;
+    explicit: boolean;
+    external_ids: {
+      isrc: string;
+    };
+    external_urls: {
+      spotify: string;
+    };
+    href: string;
+    id: string;
+    is_local: boolean;
+    name: string;
+    popularity: number;
+    preview_url: string;
+    track_number: number;
+    type: string;
+    uri: string;
+  };
 };
 
 type Category = {
@@ -71,15 +144,6 @@ type UserProfile = {
   type: string;
   uri: string;
 };
-type TokenResponse = {
-  access_token: string;
-  refresh_token: string;
-};
-
-type Playlist = {
-  name: string;
-};
-
 
 type PlaylistRequest = {
   items: Playlist[];
@@ -178,30 +242,7 @@ type PlaylistDetails = {
   snapshot_id: string;
   tracks: {
     href: string;
-    items: {
-      added_at: string;
-      added_by: {
-        external_urls: {
-          spotify: string;
-        };
-        href: string;
-        id: string;
-        type: string;
-        uri: string;
-      };
-      is_local: boolean;
-      primary_color: string;
-      track: {
-        album: {
-          album_type: string;
-          artists: {
-            external_urls: {
-              spotify: string;
-            };
-          };
-        };
-      };
-    };
+    items: PlaylistTrack[];
   };
 };
 
@@ -233,30 +274,7 @@ type SavedTracks = {
 
 type PlaylistTracks = {
   href: string;
-  items: {
-    added_at: string;
-    added_by: {
-      external_urls: {
-        spotify: string;
-      };
-      href: string;
-      id: string;
-      type: string;
-      uri: string;
-    };
-    is_local: boolean;
-    primary_color: string;
-    track: {
-      album: {
-        album_type: string;
-        artists: {
-          external_urls: {
-            spotify: string;
-          };
-        };
-      };
-    };
-  };
+  items: PlaylistTrack[];
 };
 
 type TrackDetails = {
@@ -378,4 +396,88 @@ type AlbumDetails = {
   release_date_precision: string;
   type: string;
   uri: string;
+};
+type Track = {
+  added_at: string;
+  added_by: {
+    external_urls: {
+      spotify: string;
+    };
+    href: string;
+    id: string;
+    type: string;
+    uri: string;
+  };
+  is_local: boolean;
+  primary_color: string;
+  track: {
+    album: {
+      album_type: string;
+      artists: {
+        external_urls: {
+          spotify: string;
+        };
+      }[];
+    };
+    name: string;
+    uri: string;
+  };
+};
+
+type Image = {
+  url: string;
+  height: number;
+  width: number;
+};
+
+type PlaylistItem = {
+  id: string;
+  name: string;
+  images: Image[];
+  external_urls: {
+    spotify: string;
+  };
+  description: string;
+  collaborative: boolean;
+  href: string;
+  owner: {
+    display_name: string;
+    href: string;
+    id: string;
+    type: string;
+    uri: string;
+  };
+  primary_color: string;
+  public: boolean;
+  snapshot_id: string;
+  tracks: {
+    href: string;
+    total: number;
+    items: TrackItem[];  // Añadir esta línea
+  };
+  type: string;
+  uri: string;
+};
+
+type Playlist = {
+  items: PlaylistItem[];
+};
+
+type TrackItem = {
+  track: {
+    uri: string;
+    name: string;
+    album: {
+      album_type: string;
+      artists: {
+        external_urls: {
+          spotify: string;
+        };
+      }[];
+    };
+  };
+};
+
+type UserPlaylistResponse = {
+  items: PlaylistItem[];
 };

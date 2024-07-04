@@ -1,6 +1,16 @@
 import { getCategories, getPlaylists } from './spotifyAPI';
 
-export const getRandomPlaylists = async (token: string) => {
+let playlistsCache: Playlist[] = [];
+
+export function setPlaylistsCache(playlists: Playlist[]): void {
+  playlistsCache = playlists;
+}
+
+export function getPlaylistsCache(): Playlist[] {
+  return playlistsCache;
+}
+
+export const getRandomPlaylists = async (token: string): Promise<Playlist[]> => {
   try {
     const categories = await getCategories(token);
     const category = categories.categories.items[Math.floor(Math.random() * categories.categories.items.length)];
