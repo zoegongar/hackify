@@ -3,11 +3,19 @@ body {
   transition: background-color 0.3s, color 0.3s;
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   margin: 0;
-  padding: 20px;
   display: grid;
-  grid-template-rows: 20% 70% 10%;
-  grid-template-columns: 20% 1fr;
+  grid-template-rows: 3rem auto 2.5rem;;
+  grid-template-columns: 5rem 1fr;;
   height: 100vh;
+}
+
+#logo {
+  
+}
+
+#mainContent {
+  max-height: calc(100vh - 3rem - 2.5rem);
+  overflow-x: auto;
 }
 
 /* Modo oscuro por defecto */
@@ -155,7 +163,7 @@ header {
   grid-row: 1 / 2;
   display: flex;
   justify-content: space-between;
-  padding: 0 20px;
+  height: 80px;  
 }
 
 main {
