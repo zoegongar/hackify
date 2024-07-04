@@ -43,13 +43,16 @@ export const getPlaylistDetails = async (playlistId: string, token: string): Pro
   return response.json();
 };
 
-//Función para obtener tracks guardados del usuario (favoritos)
+// Función para obtener tracks guardados del usuario (favoritos)
 export const getSavedTracks = async (token: string): Promise<SavedTracks> => {
   const response = await fetch(`${BASE_URL}/me/tracks`, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
   });
+  if (!response.ok) {
+    throw new Error(`Error fetching saved tracks: ${response.statusText}`);
+  }
   return response.json();
 };
 
@@ -83,6 +86,20 @@ export const searchTracks = async (query: string, token: string): Promise<Search
   return response.json();
 };
 
+//Función para buscar canciones, álbums, listas de reproducción o artistas
+export async function search(query: string, token: string, type: string): Promise<SearchResults> {
+  const response = await fetch(`${BASE_URL}/search?q=${encodeURIComponent(query)}&type=${type}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  if (!response.ok) {
+    throw new Error(`Error fetching search results: ${response.statusText}`);
+  }
+  return response.json();
+}
+
+
 //Función para obtener información del perfil del usuario
 export const getProfile = async (token: string): Promise<Profile> => {
   const response = await fetch(`${BASE_URL}/me`, {
@@ -92,6 +109,8 @@ export const getProfile = async (token: string): Promise<Profile> => {
   });
   return response.json();
 };
+
+//Función para obtener listas de reproducción del usuario
 
 //Función para controlar la reproducción del player (reproducir, pausar, etc.)
 export const controlPlayer = async (action: string, token: string): Promise<Player> => {
@@ -114,7 +133,7 @@ export const getArtistDetails = async (artistId: string, token: string): Promise
   return response.json();
 };
 
-//Función para obtener detalles de un álbum específico
+// Función para obtener detalles de un álbum específico
 export const getAlbumDetails = async (albumId: string, token: string): Promise<AlbumDetails> => {
   const response = await fetch(`${BASE_URL}/albums/${albumId}`, {
     headers: {
@@ -123,4 +142,5 @@ export const getAlbumDetails = async (albumId: string, token: string): Promise<A
   });
   return response.json();
 };
+
   
