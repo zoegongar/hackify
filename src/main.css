@@ -250,6 +250,7 @@ button:focus-visible {
 
 #logo {
   margin: 30px;
+  margin-top:-9px;
 }
 
 #logoutButton {
@@ -262,6 +263,10 @@ button:focus-visible {
   position: absolute;
   top: 10px;
   right: 290px;
+}
+
+img {
+  margin-right: 1em;
 }
 
 #displayName {
