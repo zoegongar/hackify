@@ -1,28 +1,19 @@
 // utils/navigation.ts
-import { renderHome } from "../pages/Home";
-import { renderPlaylists, renderPlaylistDetails, addTrackClickHandlers } from "../pages/Playlists";
+import { renderHome, addHomePlaylistClickHandlers, addHomeRefreshButtonHandler, renderPlaylistDetails, addBackToPlaylistsHandler, addTrackClickHandlers } from "../pages/Home";
+import { renderPlaylists } from "../pages/Playlists";
 import { renderFavorites } from "../pages/Favorites";
 import { renderProfile } from "../pages/Profile";
-import { getPlaylistsCache, setPlaylistsCache, getRandomPlaylists } from '../services/playlistsService';
 
 export async function navigate(view: string, id?: string): Promise<void> {
   const mainContent = document.getElementById('mainContent')!;
   switch (view) {
     case 'home':
-      mainContent.innerHTML = renderHome();
+      mainContent.innerHTML = await renderHome();
+      addHomePlaylistClickHandlers();
+      addHomeRefreshButtonHandler();
       break;
     case 'playlists':
-      const cachedPlaylists = getPlaylistsCache();
-      if (cachedPlaylists.length === 0) {
-        const token = localStorage.getItem("accessToken");
-        if (token) {
-          const playlists = await getRandomPlaylists(token);
-          setPlaylistsCache(playlists);
-        }
-      }
-      mainContent.innerHTML = await renderPlaylists();
-      addPlaylistClickHandlers();
-      addRefreshButtonHandler();
+      mainContent.innerHTML = renderPlaylists();
       break;
     case 'playlist':
       if (id) {
@@ -59,38 +50,4 @@ export function setupNavigation(): void {
     event.preventDefault();
     navigate('favorites');
   });
-}
-
-function addPlaylistClickHandlers() {
-  document.querySelectorAll('.playlist-item').forEach(item => {
-    item.addEventListener('click', function (this: HTMLElement) {
-      const playlistId = this.getAttribute('data-id');
-      if (playlistId) {
-        navigate('playlist', playlistId);
-      } else {
-        console.error('No se pudo obtener el ID de la playlist');
-      }
-    });
-  });
-}
-
-function addBackToPlaylistsHandler() {
-  document.querySelector('.back-to-playlists')?.addEventListener('click', (event) => {
-    event.preventDefault();
-    navigate('playlists');
-  });
-}
-
-function addRefreshButtonHandler() {
-  const refreshButton = document.getElementById('refreshButton');
-  if (refreshButton) {
-    refreshButton.addEventListener('click', async () => {
-      const token = localStorage.getItem("accessToken");
-      if (token) {
-        const playlists = await getRandomPlaylists(token);
-        setPlaylistsCache(playlists);
-        navigate('playlists');
-      }
-    });
-  }
 }
