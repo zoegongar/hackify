@@ -9,10 +9,6 @@ body {
   height: 100vh;
 }
 
-#logo {
-  
-}
-
 #mainContent {
   max-height: calc(100vh - 3rem - 2.5rem);
   overflow-x: auto;
@@ -426,3 +422,4 @@ button:focus-visible {
 	display: block;
   }
 }
+
