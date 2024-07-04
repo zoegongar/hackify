@@ -43,13 +43,16 @@ export const getPlaylistDetails = async (playlistId: string, token: string): Pro
   return response.json();
 };
 
-//Función para obtener tracks guardados del usuario (favoritos)
+// Función para obtener tracks guardados del usuario (favoritos)
 export const getSavedTracks = async (token: string): Promise<SavedTracks> => {
   const response = await fetch(`${BASE_URL}/me/tracks`, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
   });
+  if (!response.ok) {
+    throw new Error(`Error fetching saved tracks: ${response.statusText}`);
+  }
   return response.json();
 };
 
