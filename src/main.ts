@@ -1,3 +1,4 @@
+// main.ts
 import './main.css';
 import { init as authenticatorInit, login, logout } from './auth';
 import { setupNavigation, navigate } from './utils/navigation';
@@ -18,11 +19,12 @@ async function init() {
     console.error(error);
   }
 
-    initPublicSection(profile);
-    initPrivateSection(profile);
-    setupNavigation();
-    navigate('home');
-    setupThemeToggle();
+  initPublicSection(profile);
+  initPrivateSection(profile);
+  setupNavigation();
+  navigate('home');
+  setupThemeToggle();
+  setupSearch(); // Configurar la búsqueda
 }
 
 function initPublicSection(profile?: UserProfile): void {
@@ -46,11 +48,11 @@ function renderPrivateSection(isLogged: boolean) {
 }
 
 function initMenuSection(): void {
-    document.getElementById("profileButton")!.addEventListener("click", (event) => {
-        event.preventDefault();
-        navigate('profile');
-    });
-    document.getElementById("logoutButton")!.addEventListener("click", logout);
+  document.getElementById("profileButton")!.addEventListener("click", (event) => {
+    event.preventDefault();
+    navigate('profile');
+  });
+  document.getElementById("logoutButton")!.addEventListener("click", logout);
 }
 
 function initProfileSection(profile?: UserProfile): void {
@@ -86,17 +88,29 @@ function renderActionsSection(render: boolean) {
 }
 
 function setupThemeToggle() {
-    const darkModeToggle = document.getElementById('dark-mode-toggle') as HTMLInputElement;
+  const darkModeToggle = document.getElementById('dark-mode-toggle') as HTMLInputElement;
 
-    darkModeToggle.addEventListener('change', () => {
-        if (darkModeToggle.checked) {
-            document.body.classList.remove('light-mode');
-            document.body.classList.add('dark-mode');
-        } else {
-            document.body.classList.remove('dark-mode');
-            document.body.classList.add('light-mode');
-        }
-    });
+  darkModeToggle.addEventListener('change', () => {
+    if (darkModeToggle.checked) {
+      document.body.classList.remove('light-mode');
+      document.body.classList.add('dark-mode');
+    } else {
+      document.body.classList.remove('dark-mode');
+      document.body.classList.add('light-mode');
+    }
+  });
+}
+
+function setupSearch(): void {
+  const searchInput = document.getElementById('searchInput') as HTMLInputElement;
+  searchInput.addEventListener('keypress', (event) => {
+    if (event.key === 'Enter') {
+      const query = searchInput.value.trim();
+      if (query) {
+        navigate('search', undefined, query); // Navegar a la vista de búsqueda
+      }
+    }
+  });
 }
 
 document.addEventListener("DOMContentLoaded", init);
