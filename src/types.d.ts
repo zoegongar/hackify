@@ -1,9 +1,63 @@
+// Tipos relacionados con Imágenes
 type Image = {
   url: string;
   height: number;
   width: number;
 };
 
+// Tipos relacionados con Usuarios
+type UserProfile = {
+  country: string;
+  display_name: string;
+  email: string;
+  explicit_content: {
+    filter_enabled: boolean;
+    filter_locked: boolean;
+  };
+  external_urls: { spotify: string };
+  followers: { href: string; total: number };
+  href: string;
+  id: string;
+  images: Image[];
+  product: string;
+  type: string;
+  uri: string;
+};
+
+type Profile = {
+  country: string;
+  display_name: string;
+  email: string;
+  explicit_content: {
+    filter_enabled: boolean;
+    filter_locked: boolean;
+  };
+  external_urls: {
+    spotify: string;
+  };
+  followers: {
+    href: string;
+    total: number;
+  };
+  href: string;
+  id: string;
+  images: {
+    height: number;
+    url: string;
+    width: number;
+  }[];
+  product: string;
+  type: string;
+  uri: string;
+};
+
+// Tipos relacionados con Tokens
+type TokenResponse = {
+  access_token: string;
+  refresh_token: string;
+};
+
+// Tipos relacionados con Playlists
 type Playlist = {
   id: string;
   name: string;
@@ -105,105 +159,18 @@ type PlaylistTrack = {
   };
 };
 
-type Category = {
-  id: string;
-  name: string;
-};
-
-type CategoryResponse = {
-  categories: {
-    items: Category[];
-  };
-};
-
 type PlaylistResponse = {
   playlists: {
     items: Playlist[];
   };
 };
 
-type TokenResponse = {
-  access_token: string;
-  refresh_token: string;
-};
-
-type UserProfile = {
-  country: string;
-  display_name: string;
-  email: string;
-  explicit_content: {
-    filter_enabled: boolean;
-    filter_locked: boolean;
-  };
-  external_urls: { spotify: string };
-  followers: { href: string; total: number };
-  href: string;
-  id: string;
-  images: Image[];
-  product: string;
-  type: string;
-  uri: string;
-};
-type TokenResponse = {
-  access_token: string;
-  refresh_token: string;
-};
-
-type PlaylistRequest = {
+type UserPlaylistsResponse = {
   items: Playlist[];
 };
 
-type Category = {
-  items: {
-    id: string;
-    name: string;
-  }[];
-};
-
 type UserPlaylist = {
-  items: {
-    collaborative: boolean;
-    description: string;
-    external_urls: {
-      spotify: string;
-    };
-    href: string;
-    id: string;
-    images: {
-      height: number;
-      url: string;
-      width: number;
-    }[];
-    name: string;
-    owner: {
-      display_name: string;
-      external_urls: {
-        spotify: string;
-      };
-      href: string;
-      id: string;
-      type: string;
-      uri: string;
-    };
-    primary_color: string;
-    public: boolean;
-    snapshot_id: string;
-    tracks: {
-      href: string;
-      items: {
-        added_at: string;
-        added_by: {
-          external_urls: {
-            spotify: string;
-          };
-          href: string;
-          id: string;
-          type: string;
-          uri: string;
-        };
-      };
-    };
-  };
+  items: Playlist[];
 };
 
 type PlaylistDetails = {
@@ -243,6 +210,24 @@ type PlaylistDetails = {
   };
 };
 
+type PlaylistTracks = {
+  href: string;
+  items: PlaylistTrack[];
+};
+
+// Tipos relacionados con Categorías
+type Category = {
+  id: string;
+  name: string;
+};
+
+type CategoryResponse = {
+  categories: {
+    items: Category[];
+  };
+};
+
+// Tipos relacionados con Guardados (Favoritos)
 type SavedTracks = {
   href: string;
   items: {
@@ -269,11 +254,7 @@ type SavedTracks = {
   };
 };
 
-type PlaylistTracks = {
-  href: string;
-  items: PlaylistTrack[];
-};
-
+// Tipos relacionados con Tracks
 type TrackDetails = {
   album: {
     album_type: string;
@@ -299,33 +280,7 @@ type SearchTracks = {
   };
 };
 
-type Profile = {
-  country: string;
-  display_name: string;
-  email: string;
-  explicit_content: {
-    filter_enabled: boolean;
-    filter_locked: boolean;
-  };
-  external_urls: {
-    spotify: string;
-  };
-  followers: {
-    href: string;
-    total: number;
-  };
-  href: string;
-  id: string;
-  images: {
-    height: number;
-    url: string;
-    width: number;
-  }[];
-  product: string;
-  type: string;
-  uri: string;
-};
-
+// Tipos relacionados con el Reproductor
 type Player = {
   is_playing: boolean;
   item: {
@@ -351,6 +306,7 @@ type Player = {
   };
 };
 
+// Tipos relacionados con Artistas
 type ArtistDetails = {
   followers: {
     href: string;
@@ -370,6 +326,7 @@ type ArtistDetails = {
   uri: string;
 };
 
+// Tipos relacionados con Álbumes
 type AlbumDetails = {
   album_type: string;
   artists: {
@@ -393,88 +350,4 @@ type AlbumDetails = {
   release_date_precision: string;
   type: string;
   uri: string;
-};
-type Track = {
-  added_at: string;
-  added_by: {
-    external_urls: {
-      spotify: string;
-    };
-    href: string;
-    id: string;
-    type: string;
-    uri: string;
-  };
-  is_local: boolean;
-  primary_color: string;
-  track: {
-    album: {
-      album_type: string;
-      artists: {
-        external_urls: {
-          spotify: string;
-        };
-      }[];
-    };
-    name: string;
-    uri: string;
-  };
-};
-
-type Image = {
-  url: string;
-  height: number;
-  width: number;
-};
-
-type PlaylistItem = {
-  id: string;
-  name: string;
-  images: Image[];
-  external_urls: {
-    spotify: string;
-  };
-  description: string;
-  collaborative: boolean;
-  href: string;
-  owner: {
-    display_name: string;
-    href: string;
-    id: string;
-    type: string;
-    uri: string;
-  };
-  primary_color: string;
-  public: boolean;
-  snapshot_id: string;
-  tracks: {
-    href: string;
-    total: number;
-    items: TrackItem[];
-  };
-  type: string;
-  uri: string;
-};
-
-type Playlist = {
-  items: PlaylistItem[];
-};
-
-type TrackItem = {
-  track: {
-    uri: string;
-    name: string;
-    album: {
-      album_type: string;
-      artists: {
-        external_urls: {
-          spotify: string;
-        };
-      }[];
-    };
-  };
-};
-
-type UserPlaylistResponse = {
-  items: PlaylistItem[];
 };
