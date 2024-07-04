@@ -1,9 +1,11 @@
 import { renderHome, addHomePlaylistClickHandlers, addHomeRefreshButtonHandler, renderPlaylistDetails, addBackToPlaylistsHandler, addTrackClickHandlers } from "../pages/Home";
 import { renderUserPlaylists, renderUserPlaylistDetails, addUserPlaylistClickHandlers, addUserRefreshButtonHandler, addBackToUserPlaylistsHandler } from "../pages/Playlists";
-import { renderFavorites, addFavoritesClickHandlers } from "../pages/Favorites";
+import { renderFavorites } from "../pages/Favorites";
 import { renderProfile } from "../pages/Profile";
+import { renderSearchResults, addSearchResultClickHandlers, addBackToSearchHandler } from "../pages/Search";
+import { renderAlbumDetails, addAlbumTrackClickHandlers } from "../pages/Albums";
 
-export async function navigate(view: string, id?: string): Promise<void> {
+export async function navigate(view: string, id?: string, query?: string): Promise<void> {
   const mainContent = document.getElementById('mainContent')!;
   switch (view) {
     case 'home':
@@ -32,10 +34,22 @@ export async function navigate(view: string, id?: string): Promise<void> {
       break;
     case 'favorites':
       mainContent.innerHTML = await renderFavorites();
-      addFavoritesClickHandlers();
       break;
     case 'profile':
       mainContent.innerHTML = renderProfile();
+      break;
+    case 'search': 
+      if (query) {
+        mainContent.innerHTML = await renderSearchResults(query);
+        addSearchResultClickHandlers();
+      }
+      break;
+    case 'album':
+      if (id) {
+        mainContent.innerHTML = await renderAlbumDetails(id);
+        addBackToSearchHandler();
+        addAlbumTrackClickHandlers();
+      }
       break;
     default:
       mainContent.innerHTML = '<h1>404</h1><p>Página no encontrada.</p>';

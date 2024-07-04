@@ -32,7 +32,7 @@ function renderPlaylistsHTML(playlists: Playlist[]): string {
                 <li data-id="${playlist.id}" class="playlist-item">
                     ${
                       playlist.images && playlist.images.length > 0
-                        ? `<img src="${playlist.images[0].url}" alt="${playlist.name}" />`
+                        ? `<img class="playlist-image" src="${playlist.images[0].url}" alt="${playlist.name}" />`
                         : ""
                     }
                     <p>${playlist.name}</p>
