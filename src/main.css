@@ -4,13 +4,9 @@ body {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   margin: 0;
   display: grid;
-  grid-template-rows: 3rem auto 2.5rem;;
-  grid-template-columns: 5rem 1fr;;
+  grid-template-rows: 3rem auto 2.5rem;
+  grid-template-columns: 5rem 1fr;
   height: 100vh;
-}
-
-#logo {
-  
 }
 
 #mainContent {
@@ -72,20 +68,21 @@ body.light-mode {
   background-color: #666;
 }
 
-#menu-toggle, #menu-button {
-	display: none;
+#menu-toggle,
+#menu-button {
+  display: none;
 }
 
 #menuSection {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	height: 100vh;
-	flex-direction: column;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  flex-direction: column;
 }
 
 #actionsSection {
-	margin-bottom: 50px;
+  margin-bottom: 50px;
 }
 
 /* hack, intencionalmente oculto, con display none no funciona */
@@ -163,7 +160,7 @@ header {
   grid-row: 1 / 2;
   display: flex;
   justify-content: space-between;
-  height: 80px;  
+  height: 80px;
 }
 
 main {
@@ -284,7 +281,7 @@ button:focus-visible {
 }
 
 #mobile-menu {
-  display:none;
+  display: none;
 }
 
 #mobile-menu ul {
@@ -301,8 +298,8 @@ button:focus-visible {
 }
 
 #navAside {
-	position: absolute;
-	margin-top: 150px;
+  position: absolute;
+  margin-top: 150px;
 }
 
 #navAside li {
@@ -329,7 +326,6 @@ button:focus-visible {
   max-width: 600px;
   width: 100%;
 }
-
 
 #searchContainer input {
   width: 100%;
@@ -418,11 +414,12 @@ button:focus-visible {
 
 /* Regla para mostrar el botón de menú solo en dispositivos móviles (pantallas pequeñas) */
 @media (max-width: 768px) {
-  #menu-button, #menu-toggle {
+  #menu-button,
+  #menu-toggle {
     display: block;
   }
 
   #mobile-menu {
-	display: block;
+    display: block;
   }
 }
