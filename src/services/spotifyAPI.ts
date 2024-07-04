@@ -1,24 +1,27 @@
 const BASE_URL = 'https://api.spotify.com/v1';
 
 //Función para obtener categorías de música
-export const getCategories = async () => {
+export const getCategories = async (token: string): Promise<CategoryResponse> => {
   const response = await fetch(`${BASE_URL}/browse/categories`, {
     headers: {
-      Authorization: `Bearer ${process.env.REACT_APP_SPOTIFY_TOKEN}`,
+      Authorization: `Bearer ${token}`,
     },
   });
   return response.json();
 };
 
-//Función para obtener playlists de una categoría específica
-export const getPlaylists = async (categoryId: string) => {
+// Función para obtener playlists de una categoría específica
+export const getPlaylists = async (categoryId: string, token: string): Promise<PlaylistResponse> => {
   const response = await fetch(`${BASE_URL}/browse/categories/${categoryId}/playlists`, {
     headers: {
-      Authorization: `Bearer ${process.env.REACT_APP_SPOTIFY_TOKEN}`,
+      Authorization: `Bearer ${token}`,
     },
   });
-  return response.json();
+  const data = await response.json();
+  console.log('Playlists response:', data);
+  return data;
 };
+
 
 //Función para obtener playlists del usuario
 export const getUserPlaylists = async () => {
