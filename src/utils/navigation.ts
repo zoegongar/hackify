@@ -1,4 +1,3 @@
-// utils/navigation.ts
 import { renderHome, addHomePlaylistClickHandlers, addHomeRefreshButtonHandler, renderPlaylistDetails, addBackToPlaylistsHandler, addTrackClickHandlers } from "../pages/Home";
 import { renderPlaylists } from "../pages/Playlists";
 import { renderFavorites } from "../pages/Favorites";

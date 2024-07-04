@@ -1,4 +1,3 @@
-// services/player.ts
 let EmbedController: any = undefined;
 
 // Inicializar el reproductor
