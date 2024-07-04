@@ -1,5 +1,5 @@
 import { renderHome, addHomePlaylistClickHandlers, addHomeRefreshButtonHandler, renderPlaylistDetails, addBackToPlaylistsHandler, addTrackClickHandlers } from "../pages/Home";
-import { renderPlaylists } from "../pages/Playlists";
+import { renderUserPlaylists, renderUserPlaylistDetails, addUserPlaylistClickHandlers, addUserRefreshButtonHandler, addBackToUserPlaylistsHandler } from "../pages/Playlists";
 import { renderFavorites } from "../pages/Favorites";
 import { renderProfile } from "../pages/Profile";
 
@@ -11,9 +11,11 @@ export async function navigate(view: string, id?: string): Promise<void> {
       addHomePlaylistClickHandlers();
       addHomeRefreshButtonHandler();
       break;
-    case 'playlists':
-      mainContent.innerHTML = renderPlaylists();
-      break;
+      case 'playlists':
+        mainContent.innerHTML = await renderUserPlaylists();
+        addUserPlaylistClickHandlers();
+        addUserRefreshButtonHandler();
+        break;
     case 'playlist':
       if (id) {
         mainContent.innerHTML = await renderPlaylistDetails(id);
@@ -21,6 +23,13 @@ export async function navigate(view: string, id?: string): Promise<void> {
         addTrackClickHandlers();
       }
       break;
+      case 'user-playlist':
+        if (id) {
+          mainContent.innerHTML = await renderUserPlaylistDetails(id);
+          addBackToUserPlaylistsHandler();
+          addTrackClickHandlers();
+        }
+        break;
     case 'favorites':
       mainContent.innerHTML = renderFavorites();
       break;
