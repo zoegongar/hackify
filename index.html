@@ -1,119 +1,174 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta charset="UTF-8" />
-  <title>My Spotify Profile</title>
-  <link rel="stylesheet" href="main.css" />
-  <script src="src/main.ts" type="module"></script>
-  <script src="https://open.spotify.com/embed/iframe-api/v1" async></script>
-</head>
-
-<body class="dark-mode">
-  <header>
-    <section id="publicSection">
-      <br />
-      <button id="loginButton">Login</button>
-    </section>
-    <section id="privateSection">
-      <br />
-      <section id="menuSection">
-        <div id="searchContainer">
-          <img id="imgLoupe" src="src/img/loupe.png" />
-          <input id="searchInput" type="text" placeholder="Buscar canciones, álbums, listas, artistas..." />
-        </div>
-        <span id="displayName"></span>
-        <div class="dropdown">
-          <button id="imgAvatar" onclick="toggleDropdown()">
-            <img src="src/img/avatar.png" alt="Avatar de usuario" />
-          </button>
-          <div class="dropdown-content" id="dropdownContent">
-            <a href="#" id="profileButton">Perfil</a>
-            <a href="#" id="logoutButton">Cerrar sesión</a>
-          </div>
-        </div>
-        </div>
+  <head>
+    <meta charset="utf-8" />
+    <title>Hackify</title>
+    <link rel="stylesheet" href="main.css" />
+    <link rel="icon" type="image/png" href="src/img/Hackify.png" />
+    <script src="src/main.ts" type="module"></script>
+    <script src="https://open.spotify.com/embed/iframe-api/v1" async></script>
+  </head>
+  <body class="dark-mode">
+    <header id="header-container">
+      <section id="publicSection">
+        <button id="loginButton" class="login-button">Login</button>
       </section>
-    </section>
-  </header>
+      <section id="privateSection">
+        <section id="menuSection" class="menu-section">
+          <div id="searchContainer" class="search-container">
+            <img
+              id="imgLoupe"
+              alt="loupe"
+              class="loupe"
+              src="src/img/loupe.png"
+            />
+            <input
+              id="searchInput"
+              type="text"
+              placeholder="Buscar canciones, álbuns, listas, artistas..."
+            />
+          </div>
+          <div class="toggle-container">
+            <input
+              type="checkbox"
+              id="dark-mode-toggle"
+              class="toggle-checkbox"
+            />
+            <label for="dark-mode-toggle" class="toggle-label">
+              <span class="toggle-button"></span>
+            </label>
+          </div>
+          <div class="profile-dropdown">
+            <button id="profileButton" class="profile-button">
+              <img
+                id="imgAvatar"
+                alt="avatar"
+                class="avatar"
+                src="src/img/avatar.png"
+              />
+            </button>
+            <div class="dropdown-content">
+              <p id="displayNameHover" class="display-name-hover">
+                gongora.greyfox
+              </p>
+              <a href="#" id="profileLink" class="profile-link">Profile</a>
+              <button id="logoutButton" class="logout-button">Logout</button>
+            </div>
+          </div>
+        </section>
+      </section>
+    </header>
 
-  <aside>
-    <img id="logo" src="src/img/logo.png" alt="logo" />
-    <nav id="navAside">
-      <ul>
-        <li>
-          <a href="#" id="favoritesLink">
-            <img src="src/img/favourites.png" alt="Avatar Image" />My
-            favorites
+    <aside id="aside-container">
+      <img id="logo" class="logo" src="src/img/logo.png" alt="logo" />
+      <nav id="navAside" class="nav-aside">
+        <ul class="nav-aside-class">
+          <li class="nav-aside-item">
+            <a href="#" id="favoritesLink" class="aside-link">
+              <img
+                class="favourites img-link"
+                src="src/img/favourites.png"
+                alt="Favorites Image"
+              />
+              <p class="aside-text">My Favourites</p>
+            </a>
+          </li>
+          <li class="nav-aside-item">
+            <a href="#" id="homeLink" class="aside-link">
+              <img
+                class="home img-link"
+                src="src/img/home.png"
+                alt="Home Image"
+              />
+              <p class="aside-text">Home</p>
+            </a>
+          </li>
+          <li class="nav-aside-item">
+            <a href="#" id="playlistsLink" class="aside-link">
+              <img
+                class="playlist img-link"
+                src="src/img/playlist.png"
+                alt="Playlist Image"
+              />
+              <p class="aside-text">Playlists</p>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </aside>
+
+    <main id="mainContent">
+      <section id="profileSection">
+        <h1>Display your Spotify profile data</h1>
+        <h2>Logged in as <span id="displayName"></span></h2>
+        <ul>
+          <li>User ID: <span id="id"></span></li>
+          <li>Email: <span id="email"></span></li>
+          <li>Spotify URI: <a id="uri" href="#"></a></li>
+          <li>Link: <a id="url" href="#"></a></li>
+        </ul>
+      </section>
+    </main>
+
+    <footer id="footer-container">
+      <section id="actionsSection" class="actions-section">
+        <button id="playButton" class="play-button">
+          <img src="src/img/play.svg" alt="" />
+        </button>
+      </section>
+      <section id="spotifyEmbedSection">
+        <div id="embed-iframe"></div>
+      </section>
+    </footer>
+
+    <nav id="mobile-menu" class="mobile-menu">
+      <ul class="nav-under">
+        <li class="nav-under-item">
+          <input type="checkbox" id="menu-toggle" class="menu-toggle" />
+          <label
+            for="menu-toggle"
+            id="menu-button"
+            class="menu-button-container"
+          >
+            <img
+              class="menu-button-img img-link-under"
+              src="src/img/menu.svg"
+              alt="icon menu"
+            />
+            <p class="menu-under-text">Menu</p>
+          </label>
+        </li>
+        <li class="nav-under-item">
+          <a class="menu-link-under" href="#">
+            <img
+              class="home-link-img img-link-under"
+              src="src/img/home.svg"
+              alt="Home Image"
+            />
+            <p class="menu-under-text">Home</p>
           </a>
         </li>
-        <br />
-        <li>
-          <a href="#" id="homeLink">
-            <img src="src/img/home.png" alt="Home Image" /> Home
+        <li class="nav-under-item">
+          <a class="menu-link-under" href="#">
+            <img
+              class="search-link-img img-link-under"
+              src="src/img/search.svg"
+              alt="Search Image"
+            />
+            <p class="menu-under-text">Search</p>
           </a>
         </li>
-        <br />
-        <li>
-          <a href="#" id="playlistsLink">
-            <img src="src/img/playlist.png" alt="Playlist Image" /> Playlist
+        <li class="nav-under-item">
+          <a class="menu-link-under" href="#">
+            <img
+              class="playlist-link-img img-link-under"
+              src="src/img/playlist.svg"
+              alt="Playlist Image"
+            />
+            <p class="menu-under-text">Playlists</p>
           </a>
         </li>
       </ul>
     </nav>
-    <nav id="mobile-menu">
-      <ul>
-        <li><a href="#">Inicio</a></li>
-        <li><a href="#">Acerca de</a></li>
-        <li><a href="#">Servicios</a></li>
-        <li><a href="#">Contacto</a></li>
-      </ul>
-    </nav>
-  </aside>
-
-  <main id="mainContent">
-    <section id="profileSection">
-      <h1>Display your Spotify profile data</h1>
-      <h2>Logged in as <span id="displayName"></span></h2>
-      <ul>
-        <li>User ID: <span id="id"></span></li>
-        <li>Email: <span id="email"></span></li>
-        <li>Spotify URI: <a id="uri" href="#"></a></li>
-        <li>Link: <a id="url" href="#"></a></li>
-      </ul>
-    </section>
-  </main>
-
-  <footer>
-    <input type="checkbox" id="menu-toggle" class="menu-toggle" />
-    <label for="menu-toggle" id="menu-button">☰ Menú</label>
-    <section id="actionsSection">
-      <button id="playButton">Play/Pause</button>
-    </section>
-    <section id="spotifyEmbedSection">
-      <div id="embed-iframe"></div>
-    </section>
-  </footer>
-
-  <div class="toggle-container">
-    <input type="checkbox" id="dark-mode-toggle" class="toggle-checkbox" />
-    <label for="dark-mode-toggle" class="toggle-label">
-      <span class="toggle-button"></span>
-    </label>
-  </div>
-
-  <script>
-    function toggleDropdown() {
-      const dropdown = document.getElementById("dropdownContent");
-      dropdown.classList.toggle("show");
-    }
-
-    window.addEventListener('click', function (event) {
-      if (!event.target.closest('.dropdown') && !event.target.classList.contains('dropdown-content')) {
-        document.querySelector('.dropdown-content').classList.remove('show');
-      }
-    });
-  </script>
-</body>
-
+  </body>
 </html>
