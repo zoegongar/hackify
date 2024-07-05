@@ -48,6 +48,11 @@ header#header-container {
   flex-direction: column;
   padding: 0 20px 0 10px;
   z-index: 2;
+  transition: transform 0.3s ease;
+}
+
+#aside-container.open {
+  transform: translateX(0);
 }
 
 main#mainContent {
@@ -276,11 +281,9 @@ body.light-mode {
 
 /* Menu Aside */
 
-
 .nav-aside-item {
   list-style: none;
 }
-
 
 .aside-link {
   display: flex;
@@ -307,7 +310,6 @@ body.light-mode {
   border-radius: 5px;
   transition: transform 0.3s, box-shadow 0.3s;
 }
-
 
 .play-button {
   transition: all ease 0.3s;
@@ -360,6 +362,7 @@ iframe {
   scale: 1.05;
   transition: all ease 0.3s;
 }
+
 .menu-button-container {
   display: flex;
   align-items: center;
@@ -373,7 +376,6 @@ iframe {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
 }
 
 .img-link-under {
@@ -390,28 +392,32 @@ iframe {
 }
 
 
-/* Media Queries */
-@media (max-width: 430px){
 
+/* Media Queries */
+@media screen and (max-width: 430px) {
   #mobile-menu {
     display: block;
   }
 
   body {
-    grid-template-areas: 
+    grid-template-areas:
       "header"
       "main"
       "footer"
-      'under-menu';
+      "under-menu";
     grid-template-rows: 5rem 1fr 5rem 5rem;
     grid-template-columns: 1fr;
   }
-
-  #header-container,
-  #mainContent,
-  #footer-container {
+ 
+  header#header-container {
     width: 100%;
-    padding: 0;
+  } 
+  #menuSection {
+    width: 100%;
+  }
+
+  #searchContainer {
+    display: none;
   }
 
   #aside-container {
@@ -422,8 +428,7 @@ iframe {
     display: none;
   }
 
-
-
+  
   @keyframes slideIn {
     from {
       transform: translateX(-100%);
@@ -432,7 +437,47 @@ iframe {
       transform: translateX(0);
     }
   }
+
+  @keyframes slideOut {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-100%);
+    }
+  }
+
+  /* Mostrar el menú aside en dispositivos móviles cuando el checkbox está marcado */
+  #aside-container.open {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 75%;
+    height: calc(100% - 5rem);
+    z-index: 1;
+    overflow-y: scroll;
+    animation: slideIn 0.3s forwards;
+  }
+
+  #aside-container.closing {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 75%;
+    height: calc(100% - 5rem);
+    z-index: 1;
+    overflow-y: scroll;
+    animation: slideOut 0.3s forwards;
+  }
+
+  /* Asignar un estilo diferente al item del menú seleccionado */
+  .nav-aside-item.active .aside-link {
+    font-weight: bold;
+  }
 }
+
 
 
 @media (prefers-color-scheme: light) {
