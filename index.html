@@ -48,9 +48,7 @@
               />
             </button>
             <div class="dropdown-content">
-              <p id="displayNameHover" class="display-name-hover">
-                gongora.greyfox
-              </p>
+              <p id="displayNameHover" class="display-name-hover"></p>
               <a href="#" id="profileLink" class="profile-link">Profile</a>
               <button id="logoutButton" class="logout-button">Logout</button>
             </div>
@@ -170,5 +168,27 @@
         </li>
       </ul>
     </nav>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const profileButton = document.getElementById("profileButton");
+        const dropdownContent = document.querySelector(".dropdown-content");
+
+        profileButton.addEventListener("mousedown", (event) => {
+          event.stopPropagation();
+          dropdownContent.classList.toggle("show");
+        });
+
+        document.addEventListener("click", (event) => {
+          if (
+            dropdownContent.classList.contains("show") &&
+            event.target !== profileButton &&
+            !profileButton.contains(event.target) &&
+            !dropdownContent.contains(event.target)
+          ) {
+            dropdownContent.classList.remove("show");
+          }
+        });
+      });
+    </script>
   </body>
 </html>

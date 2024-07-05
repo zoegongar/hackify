@@ -84,6 +84,11 @@ footer#footer-container {
   color: white;
 }
 
+#playButton img {
+  margin-top: -10rem;
+
+}
+
 #mobile-menu {
   display: none;
 }
@@ -92,8 +97,9 @@ footer#footer-container {
   display: none;
   position: absolute;
   top: 1.25rem;
-  margin-right: 10em;
+  margin-right: 7em;
   right: 0;
+  z-index: 1000;
 }
 
 .dropdown-content.show {
@@ -128,6 +134,20 @@ body.light-mode a {
   color: #121212;
 }
 
+body.light-mode #aside-container {
+  background-color: #ffffff;
+}
+
+body.light-mode #footer-container {
+  background-color: #ffffff;
+}
+body.light-mode #footer-container img {
+  filter: invert(1);
+}
+body.light-mode #searchContainer {
+  filter: invert(1);
+}
+
 /* Estilos del botón deslizante */
 .toggle-container {
   position: absolute;
@@ -140,7 +160,7 @@ body.light-mode a {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  gap: 2rem;
+  gap: 1rem;
 }
 
 /* Contenedor de búsqueda */
@@ -152,6 +172,7 @@ body.light-mode a {
   padding: 0.5rem;
   width: 410px;
   max-width: 600px;
+  margin-right: 0.5rem;
 }
 
 .search-container .loupe {
@@ -174,6 +195,7 @@ body.light-mode a {
 .profile-dropdown {
   position: relative;
   display: inline-block;
+  margin-right: 1rem;
 }
 
 .profile-button {
@@ -194,6 +216,7 @@ body.light-mode a {
   align-items: center;
   justify-content: center;
   font-size: 1.5rem;
+  margin-right: 2rem;
 }
 
 .display-name {
@@ -209,7 +232,7 @@ body.light-mode a {
   z-index: 1;
   border-radius: 8px;
   padding: 10px;
-  right: 0; /* Alinea el menú con el borde derecho del contenedor */
+  right: 0;
 }
 
 .dropdown-content p,
