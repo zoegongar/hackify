@@ -1,4 +1,3 @@
-/* Estilos comunes */
 body {
   transition: background-color 0.3s, color 0.3s;
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
@@ -14,6 +13,30 @@ body {
   overflow-x: auto;
 }
 
+.dropdown-content {
+  display: none;
+  position: absolute;
+  top: 1.25rem;
+  margin-right: 10em;
+  right: 0;
+}
+
+.dropdown-content.show {
+  display: block;
+}
+
+.dropdown-content a {
+  color: white;
+}
+
+.windowClick {
+  cursor: pointer;
+}
+
+#playButton {
+  position: fixed;
+}
+
 /* Modo oscuro por defecto */
 body.dark-mode {
   background-color: #121212;
@@ -26,11 +49,15 @@ body.light-mode {
   color: #121212;
 }
 
+body.light-mode a {
+  color: #121212;
+}
+
 /* Estilos del botón deslizante */
 .toggle-container {
-  position: fixed;
-  top: 10px;
-  right: 10px;
+  position: absolute;
+  top: -1.2em;
+  right: 1em;
 }
 
 .toggle-checkbox {
@@ -39,32 +66,32 @@ body.light-mode {
 
 .toggle-label {
   display: block;
-  width: 50px;
-  height: 25px;
-  top: 50px;
+  width: 3.125rem;
+  height: 1.5625rem;
+  top: 3.125rem;
   background-color: #ccc;
-  border-radius: 25px;
+  border-radius: 1.5625rem;
   position: relative;
   cursor: pointer;
 }
 
 .toggle-button {
   display: block;
-  width: 23px;
-  height: 23px;
+  width: 1.4375rem;
+  height: 1.4375rem;
   background-color: #ffffff;
   border-radius: 50%;
   position: absolute;
-  top: 1px;
-  left: 1px;
+  top: 0.0625rem;
+  left: 0.0625rem;
   transition: transform 0.3s;
 }
 
-.toggle-checkbox:checked + .toggle-label .toggle-button {
-  transform: translateX(25px);
+.toggle-checkbox:checked +.toggle-label.toggle-button {
+  transform: translateX(1.5625rem);
 }
 
-.toggle-checkbox:checked + .toggle-label {
+.toggle-checkbox:checked +.toggle-label {
   background-color: #666;
 }
 
@@ -82,7 +109,7 @@ body.light-mode {
 }
 
 #actionsSection {
-  margin-bottom: 50px;
+  margin-bottom: 3.125rem;
 }
 
 /* hack, intencionalmente oculto, con display none no funciona */
@@ -100,8 +127,8 @@ iframe {
   font-weight: 400;
 
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  color: #ffffff;
+  background-color: #121212;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -111,7 +138,7 @@ iframe {
 
 a {
   font-weight: 500;
-  color: #646cff;
+  color: white;
   text-decoration: inherit;
 }
 
@@ -121,11 +148,11 @@ aside {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 20px;
+  padding: 1.25rem;
 }
 
 a:hover {
-  color: #535bf2;
+  color: yellowgreen;
 }
 
 body {
@@ -147,7 +174,7 @@ footer {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 0 20px;
+  padding: 0 1.25rem;
   flex-direction: column;
 }
 
@@ -158,41 +185,40 @@ footer p {
 header {
   grid-column: 2 / 3;
   grid-row: 1 / 2;
-  display: flex;
+  display:flex;
   justify-content: space-between;
-  height: 80px;
+  height: 5rem;
 }
 
 main {
   grid-column: 2 / 3;
   grid-row: 2 / 3;
-  padding: 20px;
+  padding: 1.25rem;
 }
 
 main,
 footer {
-  width: calc(100% - 200px);
+  width: calc(100% - 12.5rem);
 }
 
 main,
 footer {
-  padding: 20px;
+  padding: 1.25rem;
 }
 
 #app {
-  max-width: 1280px;
+  max-width: 80rem;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
 }
 
 .grid-item {
-  border-radius: 5px;
+  border-radius: 0.625rem;
   text-align: center;
   text-decoration: none;
   color: #333;
   display: flex;
-  /* justify-content: center; */
   align-items: center;
   overflow: hidden;
 }
@@ -200,30 +226,32 @@ footer {
 .grid-item img {
   width: 100%;
   height: auto;
-  border-radius: 5px;
+  border-radius: 0.625rem;
   transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .grid-item:hover img {
   transform: scale(1.05);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.2);
 }
 
 .logo {
-  height: 6em;
-  padding: 1.5em;
+  height: 3.75rem;
+  padding: 0.9375rem;
   will-change: filter;
   transition: filter 300ms;
 }
+
 .logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+  filter: drop-shadow(0 0 1.25rem #646cffaa);
 }
+
 .logo.vanilla:hover {
-  filter: drop-shadow(0 0 2em #3178c6aa);
+  filter: drop-shadow(0 0 1.25rem #3178c6aa);
 }
 
 .card {
-  padding: 2em;
+  padding: 1.25rem;
 }
 
 .read-the-docs {
@@ -231,9 +259,9 @@ footer {
 }
 
 button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
+  border-radius: 0.5rem;
+  border: 0.0625rem solid transparent;
+  padding: 0.375rem 0.75rem;
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
@@ -241,45 +269,56 @@ button {
   cursor: pointer;
   transition: border-color 0.25s;
 }
+
 button:hover {
-  border-color: #646cff;
+  border-color: yellowgreen;
 }
+
 button:focus,
 button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  outline: 0.25rem auto -webkit-focus-ring-color;
 }
 
 #logo {
-  margin: 30px;
-  margin-top:-9px;
+  margin: 1.875rem;
+  margin-top: -0.5625rem;
 }
 
 #logoutButton {
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 0.625rem;
+  right: 0.625rem;
 }
 
 #imgAvatar {
   position: absolute;
-  top: 10px;
-  right: 290px;
+  padding: 0;
+  border: none;
+  top: 1rem;
+  right: 12rem;
+  width: 3.75rem;
+  height: 3.69rem;
+  border-radius: 48%;
+}
+
+#imgAvatar img {
+  border-radius: 50%;
 }
 
 img {
-  margin-right: 1em;
+  margin-right: 0.625rem;
 }
 
 #displayName {
   position: absolute;
-  top: 10px;
-  right: 200px;
+  top: 2rem;
+  right: 5rem;
 }
 
 #menu-button {
   background-color: #333;
   color: #fff;
-  padding: 10px 20px;
+  padding: 0.625rem 1.25rem;
   border: none;
   cursor: pointer;
   display: none;
@@ -294,7 +333,7 @@ img {
 }
 
 #mobile-menu ul li {
-  margin: 10px 0;
+  margin: 0.625rem 0;
 }
 
 #mobile-menu ul li a {
@@ -304,7 +343,7 @@ img {
 
 #navAside {
   position: absolute;
-  margin-top: 150px;
+  margin-top: 7.5rem;
 }
 
 #navAside li {
@@ -313,36 +352,36 @@ img {
 
 #playlistGenre {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-  gap: 10px;
-  padding: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(9.375rem, 1fr));
+  gap: 0.625rem;
+  padding: 1.25rem;
 }
 
 #profileButton {
   position: absolute;
-  top: 25px;
-  right: 200px;
+  top: 1.5625rem;
+  right: 12.5rem;
 }
 
 #searchContainer {
   position: absolute;
-  top: 30px;
-  right: 650px;
-  max-width: 600px;
+  top: 1.875rem;
+  right: 38rem;
+  max-width: 37.5rem;
   width: 100%;
 }
 
 #searchContainer input {
   width: 100%;
-  padding: 15px 20px 15px 50px;
-  font-size: 18px;
+  padding: 1.25rem 1.875rem 1.25rem 3.125rem;
+  font-size: 1.125rem;
 }
 
 #searchContainer #imgLoupe {
   position: absolute;
-  left: 15px;
-  top: 15px;
-  font-size: 18px;
+  left: 0.625rem;
+  top: 1.2rem;
+  font-size: 1.125rem;
 }
 
 @media (max-width: 430px) {
@@ -378,7 +417,7 @@ img {
   #mobile-menu {
     background-color: #1a1a1a;
     position: absolute;
-    top: 50px;
+    top: 3.125rem;
     width: 100%;
     left: 0;
     right: 0;
@@ -391,7 +430,7 @@ img {
   }
 
   #mobile-menu ul li {
-    padding: 10px 0;
+    padding: 0.625rem 0;
   }
 
   #mobile-menu ul li a {
@@ -428,4 +467,3 @@ img {
     display: block;
   }
 }
-

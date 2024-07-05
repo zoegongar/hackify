@@ -1,94 +1,119 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <title>My Spotify Profile</title>
-    <link rel="stylesheet" href="main.css" />
-    <script src="src/main.ts" type="module"></script>
-    <script src="https://open.spotify.com/embed/iframe-api/v1" async></script>
-  </head>
 
-  <body class="dark-mode">
-    <header>
-      <section id="publicSection">
-        <br />
-        <button id="loginButton">Login</button>
-      </section>
-      <section id="privateSection">
-        <br />
-        <section id="menuSection">
-          <div id="searchContainer">
-            <img id="imgLoupe" src="src/img/loupe.png" />
-            <input id="searchInput" type="text" placeholder="Buscar canciones, álbums, listas, artistas..." />
+<head>
+  <meta charset="UTF-8" />
+  <title>My Spotify Profile</title>
+  <link rel="stylesheet" href="main.css" />
+  <script src="src/main.ts" type="module"></script>
+  <script src="https://open.spotify.com/embed/iframe-api/v1" async></script>
+</head>
+
+<body class="dark-mode">
+  <header>
+    <section id="publicSection">
+      <br />
+      <button id="loginButton">Login</button>
+    </section>
+    <section id="privateSection">
+      <br />
+      <section id="menuSection">
+        <div id="searchContainer">
+          <img id="imgLoupe" src="src/img/loupe.png" />
+          <input id="searchInput" type="text" placeholder="Buscar canciones, álbums, listas, artistas..." />
+        </div>
+        <span id="displayName"></span>
+        <div class="dropdown">
+          <button id="imgAvatar" onclick="toggleDropdown()">
+            <img src="src/img/avatar.png" alt="Avatar de usuario" />
+          </button>
+          <div class="dropdown-content" id="dropdownContent">
+            <a href="#" id="profileButton">Perfil</a>
+            <a href="#" id="logoutButton">Cerrar sesión</a>
           </div>
-          <button id="profileButton">Profile</button>
-          <button id="logoutButton">Logout</button>
-          <img id="imgAvatar" src="src/img/avatar.png" />
-          <span id="displayName"></span>
-        </section>
+        </div>
+        </div>
       </section>
-    </header>
+    </section>
+  </header>
 
-    <aside>
-      <img id="logo" src="src/img/logo.png" alt="logo" />
-      <nav id="navAside">
-        <ul>
-          <li>
-            <a href="#" id="homeLink"
-              ><img src="src/img/home.png" alt="Home Image"
-            /> Home</a>
-          </li>
-          <li>
-            <a href="#" id="playlistsLink"
-              ><img src="src/img/playlist.png" alt="Playlist Image"
-            /> Playlist</a>
-          </li>
-          <li>
-            <a href="#" id="favoritesLink"
-              ><img src="src/img/favourites.png" alt="Avatar Image"
-            />My favourites</a>
-          </li>
-        </ul>
-      </nav>
-      <nav id="mobile-menu">
-        <ul>
-          <li><a href="#">Inicio</a></li>
-          <li><a href="#">Acerca de</a></li>
-          <li><a href="#">Servicios</a></li>
-          <li><a href="#">Contacto</a></li>
-        </ul>
-      </nav>
-    </aside>
+  <aside>
+    <img id="logo" src="src/img/logo.png" alt="logo" />
+    <nav id="navAside">
+      <ul>
+        <li>
+          <a href="#" id="favoritesLink">
+            <img src="src/img/favourites.png" alt="Avatar Image" />My
+            favorites
+          </a>
+        </li>
+        <br />
+        <li>
+          <a href="#" id="homeLink">
+            <img src="src/img/home.png" alt="Home Image" /> Home
+          </a>
+        </li>
+        <br />
+        <li>
+          <a href="#" id="playlistsLink">
+            <img src="src/img/playlist.png" alt="Playlist Image" /> Playlist
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <nav id="mobile-menu">
+      <ul>
+        <li><a href="#">Inicio</a></li>
+        <li><a href="#">Acerca de</a></li>
+        <li><a href="#">Servicios</a></li>
+        <li><a href="#">Contacto</a></li>
+      </ul>
+    </nav>
+  </aside>
 
-    <main id="mainContent">
-      <section id="profileSection">
-        <h1>Display your Spotify profile data</h1>
-        <h2>Logged in as <span id="displayName"></span></h2>
-        <ul>
-          <li>User ID: <span id="id"></span></li>
-          <li>Email: <span id="email"></span></li>
-          <li>Spotify URI: <a id="uri" href="#"></a></li>
-          <li>Link: <a id="url" href="#"></a></li>
-        </ul>
-      </section>
-    </main>
+  <main id="mainContent">
+    <section id="profileSection">
+      <h1>Display your Spotify profile data</h1>
+      <h2>Logged in as <span id="displayName"></span></h2>
+      <ul>
+        <li>User ID: <span id="id"></span></li>
+        <li>Email: <span id="email"></span></li>
+        <li>Spotify URI: <a id="uri" href="#"></a></li>
+        <li>Link: <a id="url" href="#"></a></li>
+      </ul>
+    </section>
+  </main>
 
-    <footer>
-      <input type="checkbox" id="menu-toggle" class="menu-toggle" />
-      <label for="menu-toggle" id="menu-button">☰ Menú</label>
-      <section id="actionsSection">
-        <button id="playButton">Play/Pause</button>
-      </section>
-      <section id="spotifyEmbedSection">
-        <div id="embed-iframe"></div>
-      </section>
-    </footer>
+  <footer>
+    <input type="checkbox" id="menu-toggle" class="menu-toggle" />
+    <label for="menu-toggle" id="menu-button">☰ Menú</label>
+    <section id="actionsSection">
+      <button id="playButton">Play/Pause</button>
+    </section>
+    <section id="spotifyEmbedSection">
+      <div id="embed-iframe"></div>
+    </section>
+  </footer>
 
-    <div class="toggle-container">
-      <input type="checkbox" id="dark-mode-toggle" class="toggle-checkbox" />
-      <label for="dark-mode-toggle" class="toggle-label">
-        <span class="toggle-button"></span>
-      </label>
-    </div>
-  </body>
+  <div class="toggle-container">
+    <input type="checkbox" id="dark-mode-toggle" class="toggle-checkbox" />
+    <label for="dark-mode-toggle" class="toggle-label">
+      <span class="toggle-button"></span>
+    </label>
+  </div>
+
+  <script>
+    function toggleDropdown() {
+      const dropdown = document.getElementById("dropdownContent");
+      dropdown.classList.toggle("show");
+    }
+
+    window.addEventListener('click', function (event) {
+      if (!event.target.closest('.dropdown') && !event.target.classList.contains('dropdown-content')) {
+        document.querySelector('.dropdown-content').classList.remove('show');
+      }
+    });
+  </script>
+</body>
+
 </html>

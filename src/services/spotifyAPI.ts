@@ -110,8 +110,6 @@ export const getProfile = async (token: string): Promise<Profile> => {
   return response.json();
 };
 
-//Función para obtener listas de reproducción del usuario
-
 //Función para controlar la reproducción del player (reproducir, pausar, etc.)
 export const controlPlayer = async (action: string, token: string): Promise<Player> => {
   const response = await fetch(`${BASE_URL}/me/player/${action}`, {

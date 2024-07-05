@@ -14,7 +14,7 @@ export async function renderFavorites(): Promise<string> {
   }
 
   return `
-    <h2>Favorites</h2>
+    <h2 class="favorites">Favorites</h2>
     <ul id="favoritesList">
       ${savedTracks.items
         .map(
