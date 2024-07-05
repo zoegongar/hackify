@@ -1,7 +1,3 @@
-.favorites {
-  margin-top: -1rem;
-}
-
 #favoritesList {
   display: flex;
   flex-wrap: wrap;

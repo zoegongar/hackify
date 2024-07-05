@@ -73,7 +73,7 @@ footer#footer-container {
 
 #mobile-menu {
   display: none;
-  grid-area: 'under-menu';
+  grid-area: "under-menu";
 }
 
 .actions-section {
@@ -103,6 +103,26 @@ body.dark-mode {
 body.light-mode {
   background-color: #ffffff;
   color: #121212;
+}
+
+body.light-mode #aside-container {
+  background-color: #ffffff;
+}
+
+body.light-mode #navAside {
+  filter: invert(1);
+}
+
+body.light-mode #playButton img {
+  filter: invert(1);
+}
+
+body.light-mode #footer-container {
+  background-color: #ffffff;
+}
+
+body.light-mode #searchContainer {
+  filter: invert(1);
 }
 
 /* Estilo del header */
@@ -391,8 +411,6 @@ iframe {
   display: block;
 }
 
-
-
 /* Media Queries */
 @media screen and (max-width: 430px) {
   #mobile-menu {
@@ -408,10 +426,10 @@ iframe {
     grid-template-rows: 5rem 1fr 5rem 5rem;
     grid-template-columns: 1fr;
   }
- 
+
   header#header-container {
     width: 100%;
-  } 
+  }
   #menuSection {
     width: 100%;
   }
@@ -428,7 +446,6 @@ iframe {
     display: none;
   }
 
-  
   @keyframes slideIn {
     from {
       transform: translateX(-100%);
@@ -478,8 +495,6 @@ iframe {
   }
 }
 
-
-
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
@@ -494,4 +509,3 @@ iframe {
     background-color: #f9f9f9;
   }
 }
-
