@@ -1,6 +1,7 @@
 // @ts-nocheck
 // No he conseguido lo de los tipos en este archivo 
 
+import './Album.css';
 import { getAlbumDetails } from '../services/spotifyAPI';
 import { playTrack } from '../services/player';
 
