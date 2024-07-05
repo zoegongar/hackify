@@ -1,4 +1,3 @@
-// main.ts
 import './main.css';
 import { init as authenticatorInit, login, logout } from './auth';
 import { setupNavigation, navigate } from './utils/navigation';
@@ -48,7 +47,7 @@ function renderPrivateSection(isLogged: boolean) {
 }
 
 function initMenuSection(): void {
-  document.getElementById("profileButton")!.addEventListener("click", (event) => {
+  document.getElementById("profileLink")!.addEventListener("click", (event) => {
     event.preventDefault();
     navigate('profile');
   });
@@ -67,7 +66,8 @@ function renderProfileSection(render: boolean) {
 }
 
 function renderProfileData(profile: UserProfile) {
-  document.getElementById("displayName")!.innerText = profile.display_name;
+  document.getElementById("displayName")!.innerText = profile.display_name[0].toUpperCase();
+  document.getElementById("displayNameHover")!.innerText = profile.display_name;
   document.getElementById("id")!.innerText = profile.id;
   document.getElementById("email")!.innerText = profile.email;
   document.getElementById("uri")!.innerText = profile.uri;
