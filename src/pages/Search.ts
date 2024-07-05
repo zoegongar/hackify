@@ -22,7 +22,7 @@ export async function renderSearchResults(query: string): Promise<string> {
     html += '<section><h3>Tracks</h3><ul class="search-list">';
     searchResults.tracks.items.forEach(track => {
       html += `
-        <li class="search-item track-item" data-uri="${track.uri}">
+        <li class="search-item" data-uri="${track.uri}">
           <img src="${track.album.images[0]?.url || 'src/img/default_track.png'}" alt="${track.name}" class="search-img">
           <div class="search-info">
             <p class="search-name">${track.name}</p>
