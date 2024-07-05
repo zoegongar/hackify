@@ -24,7 +24,7 @@ export async function renderHome(): Promise<string> {
 
 function renderPlaylistsHTML(playlists: Playlist[]): string {
   return `
-        <h2 class="playlists">Playlists <button id="refreshButton">Actualizar</button></h2>
+        <h2 class="playlists">Playlists <button id="refreshButton"><img id="refresh-button-img" src="src/img/autorenew.svg" alt="actualizar listas"></button></h2>
         <ul id="playlists" class="container-home">
             ${playlists
               .map(
@@ -35,7 +35,7 @@ function renderPlaylistsHTML(playlists: Playlist[]): string {
                         ? `<img class="playlist-image" src="${playlist.images[0].url}" alt="${playlist.name}" />`
                         : ""
                     }
-                    <p>${playlist.name}</p>
+                    <p class="playlist-name">${playlist.name}</p>
                 </li>
             `
               )
