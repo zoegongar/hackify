@@ -148,6 +148,14 @@ body.light-mode #searchContainer {
   filter: invert(1);
 }
 
+body.light-mode .dropdown-content {
+  filter: invert(1);
+}
+
+body.light-mode #profileLink {
+  filter: invert(1);
+}
+
 /* Estilos del botón deslizante */
 .toggle-container {
   position: absolute;
@@ -238,7 +246,7 @@ body.light-mode #searchContainer {
 .dropdown-content p,
 .dropdown-content a,
 .dropdown-content button,
-#logoutButton {
+#logoutButton #profileLink {
   width: 100%;
   color: white;
   font-size: 1rem;
