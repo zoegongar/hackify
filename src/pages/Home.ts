@@ -85,7 +85,7 @@ export function addHomePlaylistClickHandlers() {
     item.addEventListener("click", function (this: HTMLElement) {
       const playlistId = this.getAttribute("data-id");
       if (playlistId) {
-        navigate("playlist", playlistId); // Navegar a la vista de detalles de la playlist
+        navigate("playlist", playlistId); 
       } else {
         console.error("No se pudo obtener el ID de la playlist");
       }

@@ -1,3 +1,4 @@
+import './Search.css';
 import { fetchSearchResults } from '../services/searchService';
 import { playTrack } from '../services/player';
 import { renderPlaylistDetails } from '../pages/Home';
@@ -18,27 +19,48 @@ export async function renderSearchResults(query: string): Promise<string> {
 
   // Renderizar resultados de Tracks
   if (searchResults.tracks && searchResults.tracks.items.length > 0) {
-    html += '<section><h3>Tracks</h3><ul>';
+    html += '<section><h3>Tracks</h3><ul class="search-list">';
     searchResults.tracks.items.forEach(track => {
-      html += `<li data-uri="${track.uri}" class="track-item">${track.name} by ${track.artists.map(artist => artist.name).join(', ')}</li>`;
+      html += `
+        <li class="search-item track-item" data-uri="${track.uri}">
+          <img src="${track.album.images[0]?.url || 'src/img/default_track.png'}" alt="${track.name}" class="search-img">
+          <div class="search-info">
+            <p class="search-name">${track.name}</p>
+            <p class="search-artist">${track.artists.map(artist => artist.name).join(', ')}</p>
+          </div>
+        </li>`;
     });
     html += '</ul></section>';
   }
 
   // Renderizar resultados de Albums
   if (searchResults.albums && searchResults.albums.items.length > 0) {
-    html += '<section><h3>Albums</h3><ul>';
+    html += '<section><h3>Albums</h3><ul class="search-list">';
     searchResults.albums.items.forEach(album => {
-      html += `<li data-id="${album.id}" class="album-item">${album.name} by ${album.artists.map(artist => artist.name).join(', ')}</li>`;
+      html += `
+        <li class="search-item album-item" data-id="${album.id}">
+          <img src="${album.images[0]?.url || 'src/img/default_album.png'}" alt="${album.name}" class="search-img">
+          <div class="search-info">
+            <p class="search-name">${album.name}</p>
+            <p class="search-artist">${album.artists.map(artist => artist.name).join(', ')}</p>
+          </div>
+        </li>`;
     });
     html += '</ul></section>';
   }
 
   // Renderizar resultados de Playlists
   if (searchResults.playlists && searchResults.playlists.items.length > 0) {
-    html += '<section><h3>Playlists</h3><ul>';
+    html += '<section><h3>Playlists</h3><ul class="search-list">';
     searchResults.playlists.items.forEach(playlist => {
-      html += `<li data-id="${playlist.id}" class="playlist-item">${playlist.name} by ${playlist.owner.display_name}</li>`;
+      html += `
+        <li class="search-item playlist-item" data-id="${playlist.id}">
+          <img src="${playlist.images[0]?.url || 'src/img/default_playlist.png'}" alt="${playlist.name}" class="search-img">
+          <div class="search-info">
+            <p class="search-name">${playlist.name}</p>
+            <p class="search-artist">${playlist.owner.display_name}</p>
+          </div>
+        </li>`;
     });
     html += '</ul></section>';
   }
@@ -58,7 +80,7 @@ export function addSearchResultClickHandlers() {
     });
   });
 
-  document.querySelectorAll('.album-item').forEach(item => { // Añadir manejador de clic para álbumes
+  document.querySelectorAll('.album-item').forEach(item => {
     item.addEventListener('click', async function (this: HTMLElement) {
       const albumId = this.getAttribute('data-id');
       if (albumId) {

@@ -23,7 +23,7 @@ async function init() {
   setupNavigation();
   navigate('home');
   setupThemeToggle();
-  setupSearch(); // Configurar la búsqueda
+  setupSearch(); 
   setupMenuToggle();
   setupMenuItems();
 }
@@ -68,8 +68,24 @@ function renderProfileSection(render: boolean) {
 }
 
 function renderProfileData(profile: UserProfile) {
-  document.getElementById("displayName")!.innerText = profile.display_name[0].toUpperCase();
+  // Mostrar nombre de usuario
+  document.getElementById("displayName")!.innerText = profile.display_name;
   document.getElementById("displayNameHover")!.innerText = profile.display_name;
+
+  // Mostrar avatar del usuario
+  const avatarElement = document.getElementById("imgAvatar") as HTMLImageElement;
+  if (profile.images && profile.images.length > 0) {
+    avatarElement.src = profile.images[0].url;
+  } else {
+    // Mostrar inicial del apellido si no hay imagen
+    const initial = profile.display_name.charAt(0).toUpperCase();
+    avatarElement.src = ""; 
+    avatarElement.style.backgroundColor = "#1db954";
+    avatarElement.innerText = initial; 
+    avatarElement.classList.add('avatar-initial');
+  }
+
+  // Otros datos del perfil
   document.getElementById("id")!.innerText = profile.id;
   document.getElementById("email")!.innerText = profile.email;
   document.getElementById("uri")!.innerText = profile.uri;

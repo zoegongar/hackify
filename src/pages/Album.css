@@ -1,0 +1,86 @@
+/* Estilo para el contenedor del álbum */
+.album-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  color: #fff;
+}
+
+/* Estilo para el botón de volver */
+.album-container .back-button {
+  background-color: #1db954;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 10px 0;
+  cursor: pointer;
+  border-radius: 20px;
+}
+
+.album-container h2 {
+  font-size: 2rem;
+  margin: 1rem 0;
+  color: #1db954;
+}
+
+.album-container img {
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.album-container ul {
+  list-style: none;
+  padding: 0;
+  width: 100%;
+  max-width: 600px;
+}
+
+.album-container ul li {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  background-color: #181818;
+  margin-bottom: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.album-container ul li:hover {
+  background-color: #282828;
+}
+
+.album-container ul li::before {
+  content: '♪';
+  margin-right: 10px;
+  color: #1db954;
+}
+
+.album-container .track-item {
+  display: flex;
+  align-items: center;
+}
+
+.album-container .track-item:hover {
+  background-color: #282828;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .album-container {
+    padding: 0 10px;
+  }
+
+  .album-container ul li {
+    padding: 5px;
+  }
+
+  .album-container h2 {
+    font-size: 1.5rem;
+  }
+}
