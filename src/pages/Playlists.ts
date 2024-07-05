@@ -47,17 +47,20 @@ export async function renderUserPlaylistDetails(playlistId: string): Promise<str
   }
 
   return `
-    <div>
-      <h2><span class="back-to-user-playlists">Mis Playlists</span> / ${playlist.name}</h2>
-      <ul>
-        ${playlist.tracks.items.map(item => `
-          <li data-uri="${item.track.uri}" class="track-item">
-            ${item.track.name}
-          </li>
-        `).join('')}
-      </ul>
-    </div>
-  `;
+    <div class="playlist-details">
+            <div class="playlist-header">
+                ${playlist.images && playlist.images.length > 0 ? `<img class="playlist-image" src="${playlist.images[0].url}" alt="${playlist.name}" />` : ''}
+                <h2 class="back-to-user-playlists">Mis Playlists / ${playlist.name}</h2>
+            </div>
+            <ul class="playlist-tracks">
+                ${playlist.tracks.items.map(item => `
+                    <li data-uri="${item.track.uri}" class="track-item">
+                        ${item.track.name}
+                    </li>
+                `).join('')}
+            </ul>
+        </div>
+    `;
 }
 
 export function addUserPlaylistClickHandlers() {
