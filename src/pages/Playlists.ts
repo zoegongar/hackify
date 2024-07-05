@@ -20,7 +20,7 @@ export async function renderUserPlaylists(): Promise<string> {
 
 function renderUserPlaylistsHTML(playlists: Playlist[]): string {
     return `
-        <h2>Mis Playlists</h2>
+        <h2 class="mis-playlists">Mis Playlists</h2>
         <ul id="userPlaylists" class="user-playlists">
             ${playlists.map(playlist => `
                 <li data-id="${playlist.id}" class="user-playlist-item">

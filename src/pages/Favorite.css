@@ -1,19 +1,14 @@
-.mis-playlists {
-  margin-top: -1.5rem;
-}
-
-.user-playlists {
+#favoritesList {
   display: flex;
   flex-wrap: wrap;
   gap: 1.25em;
-  overflow-x: auto;
-  white-space: nowrap;
   padding: 1.25em;
   box-sizing: border-box;
-  max-height: 100%;
+  list-style: none;
+  overflow-x: auto;
 }
 
-.user-playlist-item {
+.favorite-track {
   cursor: pointer;
   flex: 0 0 calc(25% - 3em);
   display: flex;
@@ -21,34 +16,38 @@
   align-items: center;
   box-sizing: border-box;
   transition: transform 0.2s ease-in-out;
+  text-align: center;
 }
 
-.user-playlist-item:hover {
+.favorite-track:hover {
   transform: translateY(-5px);
 }
 
-.user-playlist-item img {
-  width: 100%;
-  height: auto;
+.favorite-track-image {
+  width: 100px;
+  height: 100px;
   object-fit: cover;
+  margin-bottom: 0.5em;
 }
 
-.user-playlist-name {
+.favorite-track p {
   font-size: 1rem;
-  white-space: nowrap;
+  white-space: wrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  text-align: center;
+  margin: 0;
+  width: 100%;
   margin-top: 0.5em;
+  box-sizing: border-box;
 }
 
 /* Ajustes para dispositivos más pequeños */
 @media (max-width: 768px) {
-  .user-playlist-item {
-    flex-basis: calc(50% - 1.25em);
+  .favorite-track {
+    flex: 0 0 calc(50% - 1.25em);
   }
 
-  .user-playlist-name {
+  .favorite-track p {
     font-size: 0.9rem;
   }
 }

@@ -114,3 +114,4 @@ function setupSearch(): void {
 }
 
 document.addEventListener("DOMContentLoaded", init);
+
