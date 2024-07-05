@@ -48,6 +48,11 @@ header#header-container {
   flex-direction: column;
   padding: 0 20px 0 10px;
   z-index: 2;
+  transition: transform 0.3s ease;
+}
+
+#aside-container.open {
+  transform: translateX(0);
 }
 
 main#mainContent {
@@ -68,7 +73,7 @@ footer#footer-container {
 
 #mobile-menu {
   display: none;
-  grid-area: "under-menu";
+  grid-area: 'under-menu';
 }
 
 .actions-section {
@@ -84,38 +89,8 @@ footer#footer-container {
   color: white;
 }
 
-#playButton img {
-  margin-top: -10rem;
-
-}
-
 #mobile-menu {
   display: none;
-}
-
-.dropdown-content {
-  display: none;
-  position: absolute;
-  top: 1.25rem;
-  margin-right: 7em;
-  right: 0;
-  z-index: 1000;
-}
-
-.dropdown-content.show {
-  display: block;
-}
-
-.dropdown-content a {
-  color: white;
-}
-
-.windowClick {
-  cursor: pointer;
-}
-
-#playButton {
-  position: fixed;
 }
 
 /* Modo oscuro por defecto */
@@ -130,45 +105,12 @@ body.light-mode {
   color: #121212;
 }
 
-body.light-mode a {
-  color: #121212;
-}
-
-body.light-mode #aside-container {
-  background-color: #ffffff;
-}
-
-body.light-mode #footer-container {
-  background-color: #ffffff;
-}
-body.light-mode #footer-container img {
-  filter: invert(1);
-}
-body.light-mode #searchContainer {
-  filter: invert(1);
-}
-
-body.light-mode .dropdown-content {
-  filter: invert(1);
-}
-
-body.light-mode #profileLink {
-  filter: invert(1);
-}
-
-/* Estilos del botón deslizante */
-.toggle-container {
-  position: absolute;
-  top: -1.2em;
-  right: 1em;
-}
-
 /* Estilo del header */
 .menu-section {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  gap: 1rem;
+  gap: 2rem;
 }
 
 /* Contenedor de búsqueda */
@@ -180,7 +122,6 @@ body.light-mode #profileLink {
   padding: 0.5rem;
   width: 410px;
   max-width: 600px;
-  margin-right: 0.5rem;
 }
 
 .search-container .loupe {
@@ -203,7 +144,6 @@ body.light-mode #profileLink {
 .profile-dropdown {
   position: relative;
   display: inline-block;
-  margin-right: 1rem;
 }
 
 .profile-button {
@@ -224,7 +164,6 @@ body.light-mode #profileLink {
   align-items: center;
   justify-content: center;
   font-size: 1.5rem;
-  margin-right: 2rem;
 }
 
 .display-name {
@@ -240,13 +179,13 @@ body.light-mode #profileLink {
   z-index: 1;
   border-radius: 8px;
   padding: 10px;
-  right: 0;
+  right: 0; /* Alinea el menú con el borde derecho del contenedor */
 }
 
 .dropdown-content p,
 .dropdown-content a,
 .dropdown-content button,
-#logoutButton #profileLink {
+#logoutButton {
   width: 100%;
   color: white;
   font-size: 1rem;
@@ -298,31 +237,28 @@ body.light-mode #profileLink {
 
 .toggle-label {
   display: block;
-  width: 3.125rem;
-  height: 1.5625rem;
-  top: 3.125rem;
   width: 50px;
   height: 25px;
   background-color: #ccc;
-  border-radius: 1.5625rem;
+  border-radius: 25px;
   position: relative;
   cursor: pointer;
 }
 
 .toggle-button {
   display: block;
-  width: 1.4375rem;
-  height: 1.4375rem;
+  width: 23px;
+  height: 23px;
   background-color: #ffffff;
   border-radius: 50%;
   position: absolute;
-  top: 0.0625rem;
-  left: 0.0625rem;
+  top: 1px;
+  left: 1px;
   transition: transform 0.3s;
 }
 
-.toggle-checkbox:checked + .toggle-label.toggle-button {
-  transform: translateX(1.5625rem);
+.toggle-checkbox:checked + .toggle-label .toggle-button {
+  transform: translateX(25px);
 }
 
 .toggle-checkbox:checked + .toggle-label {
@@ -426,6 +362,7 @@ iframe {
   scale: 1.05;
   transition: all ease 0.3s;
 }
+
 .menu-button-container {
   display: flex;
   align-items: center;
@@ -454,8 +391,10 @@ iframe {
   display: block;
 }
 
+
+
 /* Media Queries */
-@media (max-width: 430px) {
+@media screen and (max-width: 430px) {
   #mobile-menu {
     display: block;
   }
@@ -469,12 +408,16 @@ iframe {
     grid-template-rows: 5rem 1fr 5rem 5rem;
     grid-template-columns: 1fr;
   }
-
-  #header-container,
-  #mainContent,
-  #footer-container {
+ 
+  header#header-container {
     width: 100%;
-    padding: 0;
+  } 
+  #menuSection {
+    width: 100%;
+  }
+
+  #searchContainer {
+    display: none;
   }
 
   #aside-container {
@@ -485,6 +428,7 @@ iframe {
     display: none;
   }
 
+  
   @keyframes slideIn {
     from {
       transform: translateX(-100%);
@@ -493,7 +437,48 @@ iframe {
       transform: translateX(0);
     }
   }
+
+  @keyframes slideOut {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-100%);
+    }
+  }
+
+  /* Mostrar el menú aside en dispositivos móviles cuando el checkbox está marcado */
+  #aside-container.open {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 75%;
+    height: calc(100% - 5rem);
+    z-index: 1;
+    overflow-y: scroll;
+    animation: slideIn 0.3s forwards;
+  }
+
+  #aside-container.closing {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 75%;
+    height: calc(100% - 5rem);
+    z-index: 1;
+    overflow-y: scroll;
+    animation: slideOut 0.3s forwards;
+  }
+
+  /* Asignar un estilo diferente al item del menú seleccionado */
+  .nav-aside-item.active .aside-link {
+    font-weight: bold;
+  }
 }
+
+
 
 @media (prefers-color-scheme: light) {
   :root {
@@ -509,3 +494,4 @@ iframe {
     background-color: #f9f9f9;
   }
 }
+

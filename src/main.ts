@@ -24,6 +24,8 @@ async function init() {
   navigate('home');
   setupThemeToggle();
   setupSearch(); // Configurar la búsqueda
+  setupMenuToggle();
+  setupMenuItems();
 }
 
 function initPublicSection(profile?: UserProfile): void {
@@ -107,11 +109,49 @@ function setupSearch(): void {
     if (event.key === 'Enter') {
       const query = searchInput.value.trim();
       if (query) {
-        navigate('search', undefined, query); // Navegar a la vista de búsqueda
+        navigate('search', undefined, query);
       }
     }
   });
 }
 
-document.addEventListener("DOMContentLoaded", init);
+function setupMenuToggle(): void {
+  const menuToggle = document.getElementById('menu-toggle') as HTMLInputElement;
+  const asideContainer = document.getElementById('aside-container') as HTMLElement;
 
+  menuToggle.addEventListener('change', () => {
+    if (menuToggle.checked) {
+      asideContainer.classList.remove('closing');
+      asideContainer.classList.add('open');
+    } else {
+      asideContainer.classList.remove('open');
+      asideContainer.classList.add('closing');
+      setTimeout(() => {
+        asideContainer.classList.remove('closing');
+      }, 300);
+    }
+  });
+
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 430) {
+      asideContainer.classList.remove('open');
+      menuToggle.checked = false;
+    }
+  });
+}
+
+function setupMenuItems(): void {
+  const menuItems = document.querySelectorAll('.nav-aside-item');
+
+  menuItems.forEach(item => {
+    item.addEventListener('click', () => {
+      menuItems.forEach(i => i.classList.remove('active'));
+      item.classList.add('active');
+      const menuToggle = document.getElementById('menu-toggle') as HTMLInputElement;
+      menuToggle.checked = false;
+      document.getElementById('aside-container')!.classList.remove('open');
+    });
+  });
+}
+
+document.addEventListener("DOMContentLoaded", init);
